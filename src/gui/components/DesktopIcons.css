@@ -1,0 +1,91 @@
+.desktop-icons {
+  position: fixed;
+  z-index: 12;
+  left: 34px;
+  top: 285px;
+  display: grid;
+  gap: 22px;
+}
+
+.desktop-icon {
+  width: 96px;
+  min-height: 96px;
+  border: 0;
+  color: #eafff4;
+  background: transparent;
+  cursor: default;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  padding: 10px;
+  transition: 0.18s ease;
+}
+
+.desktop-icon:hover,
+.desktop-icon.selected {
+  background: rgba(0, 255, 157, 0.1);
+  box-shadow: 0 0 0 1px rgba(146, 255, 205, 0.18) inset;
+}
+
+.desktop-icon:hover .desktop-icon-box,
+.desktop-icon.selected .desktop-icon-box {
+  transform: translateY(-4px) scale(1.06);
+  border-color: rgba(0, 255, 157, 0.4);
+  background: rgba(0, 255, 157, 0.13);
+}
+
+.desktop-icon-box {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(146, 255, 205, 0.18);
+  border-radius: 20px;
+  color: #00ff9d;
+  background: rgba(3, 14, 10, 0.42);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+  transition: 0.18s ease;
+}
+
+.desktop-icon small {
+  max-width: 92px;
+  color: rgba(234, 255, 244, 0.78);
+  font-size: 12px;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.desktop-icon.selected small {
+  color: #eafff4;
+}
+
+@media (max-width: 820px) {
+  .desktop-icons {
+    left: 18px;
+    top: 250px;
+    gap: 16px;
+  }
+
+  .desktop-icon {
+    width: 78px;
+    min-height: 82px;
+    padding: 8px;
+  }
+
+  .desktop-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 17px;
+  }
+
+  .desktop-icon-box svg {
+    width: 27px;
+    height: 27px;
+  }
+
+  .desktop-icon small {
+    font-size: 11px;
+  }
+}

@@ -19,12 +19,13 @@ import enterSound from "../../assets/sounds/enter.mp3";
 import successSound from "../../assets/sounds/success.mp3";
 import errorSound from "../../assets/sounds/error.mp3";
 import matrixSound from "../../assets/sounds/matrix.mp3";
+import hologramSound from "../../assets/sounds/hologram.mp3";
 import ProfileGif from "./ProfileGif";
 import GifLoader from "./GifLoader";
 
 const commandList = Object.keys(commands);
 
-export default function Terminal() {
+export default function Terminal({ onOpenGui }) {
   const [currentPath, setCurrentPath] = useState(HOME_PATH);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState([
@@ -59,6 +60,10 @@ export default function Terminal() {
     audioManager.load("matrix", matrixSound, {
       volume: 0.15,
       loop: true,
+    });
+
+    audioManager.load("hologram", hologramSound, {
+      volume: 0.45,
     });
   }, []);
 
@@ -104,6 +109,7 @@ export default function Terminal() {
 
     const raw = input.trim();
     const cmd = raw.toLowerCase();
+    const isStartGui = ["startx", "gui", "desktop"].includes(cmd);
 
     if (!cmd || isRunning) return;
 
@@ -121,6 +127,39 @@ export default function Terminal() {
       requestAnimationFrame(() => {
         inputRef.current?.focus();
       });
+      return;
+    }
+
+    if (isStartGui) {
+      setHistory((prev) => [...prev, { type: "command", prompt, text: raw }]);
+
+      const bootLines = [
+        "Starting X Server...",
+        "Loading Desktop Environment...",
+        "Loading Wallpaper...",
+        "Loading Widgets...",
+        "Loading Window Manager...",
+        "Launching WILLY OS...",
+      ];
+
+      for (const line of bootLines) {
+        await delay(350);
+        setHistory((prev) => [...prev, { type: "dim", text: line }]);
+      }
+
+      await delay(300);
+
+      setHistory((prev) => [
+        ...prev,
+        { type: "system", text: "████████████████████ 100%" },
+        { type: "dim", text: "→ Fade to GUI" },
+      ]);
+
+      audioManager.play("success");
+
+      await delay(650);
+      onOpenGui?.();
+
       return;
     }
 
@@ -481,6 +520,23 @@ export default function Terminal() {
       ];
     }
 
+    if (cmd === "gui") {
+      setTimeout(() => {
+        onOpenGui?.();
+      }, 700);
+
+      return [
+        {
+          type: "dim",
+          text: "Initializing Willy OS GUI...",
+        },
+        {
+          type: "system",
+          text: "Loading desktop environment...",
+        },
+      ];
+    }
+
     if (cmd === "ls") {
       const node = getNodeByPath(currentPath);
 
@@ -634,6 +690,9 @@ export default function Terminal() {
         "sudo",
         "hack",
         "matrix",
+        "startx",
+        "gui",
+        "desktop",
       ];
 
       // autocomplete command pertama

@@ -1,0 +1,36 @@
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.galleryItem {
+  padding: 4px;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 255, 170, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  transition: 0.25s;
+}
+
+.galleryItem:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 255, 170, 0.45);
+  box-shadow: 0 0 25px rgba(0, 255, 170, 0.18);
+}
+
+.galleryItem img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.galleryItem span {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  text-transform: capitalize;
+}

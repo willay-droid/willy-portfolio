@@ -1,8 +1,10 @@
+import cv from "../assets/profile/cv/Willyanto_Diharjo_Resume.pdf";
+
 export const links = {
   github: "https://github.com/willay-droid",
   whatsapp: "https://wa.me/6282218937297",
   email: "mailto:w.diharjo7@gmail.com",
-  cv: "/cv.pdf",
+  cv,
 };
 
 export const projects = {

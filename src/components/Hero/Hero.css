@@ -1,0 +1,384 @@
+.hero {
+  position: fixed;
+  left: 50%;
+  top: 54%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 120px;
+
+  z-index: 20;
+  pointer-events: none;
+
+  transition: left 0.45s ease;
+}
+
+.hero.hero-shifted {
+  left: calc(50% - 240px);
+}
+
+.heroText {
+  transform: translateY(-65px);
+}
+
+.heroPhoto {
+  position: relative;
+  width: 560px;
+  height: 560px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.orbitCard {
+  position: absolute;
+  width: 220px;
+  padding: 14px 16px;
+  border: 1px solid rgba(0, 255, 170, 0.28);
+  border-radius: 18px;
+  background: rgba(3, 14, 10, 0.58);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 0 28px rgba(0, 255, 170, 0.16);
+  opacity: 0;
+  transform: scale(0.88);
+  transition: 0.45s ease;
+}
+
+.heroOrbitInfo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 720px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.orbitCard::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00ff99, transparent);
+  box-shadow: 0 0 12px #00ff99;
+  opacity: 0.8;
+}
+
+.orbitCard span {
+  color: #00ff9d;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  font-weight: 800;
+}
+
+.orbitCard p {
+  margin: 6px 0 0;
+  color: rgba(234, 255, 244, 0.72);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.orbitProfile {
+  left: 40px;
+  top: 40px;
+}
+
+.orbitProfile::before {
+  width: 145px;
+  right: -145px;
+  top: 50%;
+}
+
+.orbitProjects {
+  right: 25px;
+  top: 78px;
+}
+
+.orbitProjects::before {
+  width: 135px;
+  left: -135px;
+  top: 50%;
+}
+
+.orbitSkills {
+  left: -60px;
+  bottom: 42px;
+}
+
+.orbitSkills::before {
+  width: 130px;
+  right: -130px;
+  top: 50%;
+}
+
+.orbitContact {
+  right: -60px;
+  bottom: 32px;
+}
+
+.orbitContact::before {
+  width: 120px;
+  left: -120px;
+  top: 50%;
+}
+
+.hero.hero-open .orbitCard {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hero.hero-open .orbitProfile {
+  transition-delay: 0.1s;
+}
+
+.hero.hero-open .orbitProjects {
+  transition-delay: 0.22s;
+}
+
+.hero.hero-open .orbitSkills {
+  transition-delay: 0.34s;
+}
+
+.hero.hero-open .orbitContact {
+  transition-delay: 0.46s;
+}
+
+.heroPhoto img {
+  width: 100%;
+  object-fit: contain;
+
+  -webkit-mask-image: linear-gradient(
+    to top,
+    transparent 0%,
+    rgba(0, 0, 0, 0.15) 8%,
+    rgba(0, 0, 0, 0.5) 15%,
+    #000 25%
+  );
+
+  mask-image: linear-gradient(
+    to top,
+    transparent 0%,
+    rgba(0, 0, 0, 0.15) 8%,
+    rgba(0, 0, 0, 0.5) 15%,
+    #000 25%
+  );
+
+  filter: drop-shadow(0 0 12px #00ff99)
+    drop-shadow(0 0 40px rgba(0, 255, 170, 0.4))
+    drop-shadow(0 0 80px rgba(0, 255, 170, 0.22));
+}
+
+@keyframes floatHero {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.heroGlow::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -15px;
+
+  width: 220px;
+  height: 90px;
+
+  transform: translateX(-50%);
+
+  background: radial-gradient(
+    ellipse,
+    rgba(0, 255, 170, 0.45),
+    rgba(0, 255, 170, 0.12) 55%,
+    transparent 80%
+  );
+
+  filter: blur(25px);
+}
+
+.heroPlatform {
+  transform: translateX(-100px);
+}
+
+.holoPlatform {
+  position: relative;
+  width: 360px;
+  height: 90px;
+  margin-top: -15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.holoRing {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 255, 180, 0.35);
+  box-shadow:
+    0 0 18px rgba(0, 255, 170, 0.45),
+    inset 0 0 20px rgba(0, 255, 170, 0.2);
+}
+
+.ring2 {
+  inset: 16px 34px;
+  opacity: 0.55;
+  border-style: dashed;
+}
+
+.holoCore {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 110px;
+  height: 16px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 255, 170, 0.18);
+  filter: blur(8px);
+  animation: holoPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes holoPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+.heroReveal {
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+  transition: 0.55s ease;
+  pointer-events: none;
+}
+
+.hero.hero-open .heroReveal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.hero .holoPlatform,
+.hero .heroPhoto img,
+.hero .heroScan {
+  opacity: 0;
+}
+
+.hero.hero-holo-ready .holoPlatform {
+  animation: holoRingStart 0.9s ease forwards;
+}
+
+.hero.hero-holo-ready .heroScan {
+  animation: holoScanUp 1.2s ease forwards;
+  animation-delay: 0.45s;
+}
+
+.hero.hero-holo-ready .heroPhoto img {
+  animation:
+    photoRevealHolo 1.35s ease forwards,
+    floatHero 5s ease-in-out infinite;
+  animation-delay: 0.65s, 2s;
+}
+
+.heroScan {
+  position: absolute;
+  left: 50%;
+  bottom: 38px;
+  width: 230px;
+  height: 3px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(0, 255, 170, 0.9);
+  box-shadow:
+    0 0 18px rgba(0, 255, 170, 0.9),
+    0 0 55px rgba(0, 255, 170, 0.55);
+  z-index: 4;
+  pointer-events: none;
+}
+
+@keyframes holoRingStart {
+  from {
+    opacity: 0;
+    transform: translateX(20px) translateY(25px) scale(0.65);
+    filter: blur(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(90px) translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes holoGlowStart {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes holoScanUp {
+  0% {
+    opacity: 0;
+    bottom: 38px;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    bottom: 300px;
+  }
+}
+
+@keyframes photoRevealHolo {
+  0% {
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+    filter: brightness(1.8) saturate(1.7) drop-shadow(0 0 24px #00ff99)
+      drop-shadow(0 0 80px rgba(0, 255, 170, 0.65));
+  }
+
+  55% {
+    opacity: 1;
+    clip-path: inset(35% 0 0 0);
+    filter: brightness(1.35) saturate(1.45) drop-shadow(0 0 18px #00ff99)
+      drop-shadow(0 0 60px rgba(0, 255, 170, 0.55));
+  }
+
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: brightness(1) saturate(1) drop-shadow(0 0 12px #00ff99)
+      drop-shadow(0 0 40px rgba(0, 255, 170, 0.4))
+      drop-shadow(0 0 80px rgba(0, 255, 170, 0.22));
+  }
+}
+
+.heroGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}

@@ -1,0 +1,720 @@
+.gui-os {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #eafff4;
+  font-family: Inter, ui-sans-serif, system-ui, Arial, sans-serif;
+  background: #020504;
+}
+
+.desktop-wallpaper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 50;
+  transition:
+    transform 0.45s ease,
+    filter 0.45s ease,
+    opacity 0.45s ease;
+}
+
+.launcher-active .desktop-wallpaper {
+  transform: scale(1.06);
+  filter: blur(10px);
+}
+
+.aurora {
+  position: absolute;
+  width: 46vw;
+  height: 46vw;
+  min-width: 420px;
+  min-height: 420px;
+  border-radius: 999px;
+  filter: blur(80px);
+  opacity: 0.28;
+  animation: auroraMove 16s ease-in-out infinite alternate;
+}
+
+.aurora-one {
+  left: -12%;
+  top: 8%;
+  background: #00ff9d;
+}
+
+.aurora-two {
+  right: -10%;
+  top: 2%;
+  background: #009dff;
+  animation-delay: -5s;
+}
+
+.aurora-three {
+  left: 34%;
+  bottom: -26%;
+  background: #2effc7;
+  opacity: 0.16;
+  animation-delay: -9s;
+}
+
+@keyframes auroraMove {
+  from {
+    transform: translate3d(-20px, -16px, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(36px, 28px, 0) scale(1.16);
+  }
+}
+
+.desktop-stars {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image:
+    radial-gradient(circle, rgba(234, 255, 244, 0.5) 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(0, 255, 157, 0.45) 1px, transparent 1.4px);
+  background-size:
+    90px 90px,
+    140px 140px;
+  background-position:
+    0 0,
+    40px 60px;
+  animation: starDrift 28s linear infinite;
+}
+
+@keyframes starDrift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-80px, 60px, 0);
+  }
+}
+
+.desktop-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.13;
+  background-image:
+    linear-gradient(rgba(0, 255, 157, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 157, 0.12) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 88%);
+}
+
+.desktop-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.48) 100%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.58));
+}
+
+.os-topbar {
+  position: relative;
+  z-index: 10;
+  height: 58px;
+  margin: 18px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border: 1px solid rgba(146, 255, 205, 0.22);
+  border-radius: 20px;
+  background: rgba(3, 14, 10, 0.58);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+}
+
+.desktop-weather-widget {
+  position: fixed;
+  z-index: 11;
+  left: 34px;
+  top: 104px;
+  width: 190px;
+  padding: 18px;
+  border: 1px solid rgba(146, 255, 205, 0.18);
+  border-radius: 26px;
+  color: #eafff4;
+  background: rgba(3, 14, 10, 0.42);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.26);
+}
+
+.weather-widget-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.weather-widget-head svg {
+  color: #00ff9d;
+  filter: drop-shadow(0 0 18px rgba(0, 255, 157, 0.42));
+}
+
+.weather-widget-head strong {
+  display: block;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.weather-widget-head span {
+  display: block;
+  margin-top: 4px;
+  color: rgba(234, 255, 244, 0.62);
+  font-size: 13px;
+}
+
+.weather-widget-meta {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.weather-widget-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  color: rgba(234, 255, 244, 0.74);
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 12px;
+}
+
+@media (max-width: 820px) {
+  .desktop-weather-widget {
+    left: 18px;
+    top: 84px;
+    width: 160px;
+    padding: 14px;
+    border-radius: 22px;
+  }
+
+  .weather-widget-head strong {
+    font-size: 28px;
+  }
+
+  .weather-widget-meta {
+    gap: 6px;
+  }
+
+  .weather-widget-meta span {
+    padding: 7px 8px;
+    font-size: 11px;
+  }
+}
+
+.os-brand,
+.os-status {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.os-logo {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #001d10;
+  background: #00ff9d;
+  font-weight: 900;
+}
+
+.os-center {
+  color: rgba(234, 255, 244, 0.72);
+  font-size: 13px;
+}
+
+.os-status {
+  justify-content: flex-end;
+  color: rgba(234, 255, 244, 0.72);
+}
+
+.desktop-layer {
+  position: relative;
+  z-index: 4;
+  min-height: calc(100vh - 94px);
+  padding: 32px;
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.launcher-active .desktop-layer {
+  transform: translateX(-96px) scale(0.98);
+  filter: blur(6px) brightness(0.7) saturate(0.8);
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.hero-widget {
+  width: min(920px, 100%);
+  min-height: calc(100vh - 190px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 22px;
+  align-content: center;
+}
+
+.weather-widget,
+.clock-widget,
+.desktop-dock,
+.launcher-panel,
+.os-window {
+  border: 1px solid rgba(146, 255, 205, 0.22);
+  background: rgba(3, 14, 10, 0.54);
+  backdrop-filter: blur(24px);
+  box-shadow: 0 26px 90px rgba(0, 0, 0, 0.34);
+}
+
+.weather-widget {
+  min-height: 420px;
+  padding: 42px;
+  border-radius: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.weather-top {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.weather-symbol {
+  font-size: 86px;
+  line-height: 1;
+  color: #00ff9d;
+  text-shadow: 0 0 40px rgba(0, 255, 157, 0.45);
+}
+
+.weather-top p {
+  margin: 0 0 8px;
+  color: rgba(234, 255, 244, 0.68);
+  font-size: 18px;
+}
+
+.weather-top h1 {
+  margin: 0;
+  font-size: clamp(92px, 13vw, 168px);
+  line-height: 0.85;
+  letter-spacing: -0.09em;
+}
+
+.weather-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.weather-bottom span {
+  padding: 12px 16px;
+  border-radius: 999px;
+  color: rgba(234, 255, 244, 0.72);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.desktop-clock-widget {
+  position: fixed;
+  top: 105px;
+  right: 35px;
+  width: 200px;
+  padding: 20px;
+  z-index: 11;
+  border-radius: 26px;
+  backdrop-filter: blur(18px);
+  background: rgba(3, 14, 10, 0.42);
+  border: 1px solid rgba(146, 255, 205, 0.18);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.25);
+  text-align: right;
+  transition: transform 0.45s ease;
+}
+
+.desktop-clock-widget strong {
+  display: block;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.desktop-clock-widget span {
+  display: block;
+  margin-top: 10px;
+  color: rgba(234, 255, 244, 0.75);
+}
+
+.desktop-clock-widget small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(234, 255, 244, 0.45);
+  font-size: 12px;
+}
+
+@media (max-width: 820px) {
+  .desktop-clock-widget {
+    right: 18px;
+    top: 84px;
+    width: 160px;
+    padding: 16px;
+  }
+
+  .desktop-clock-widget strong {
+    font-size: 30px;
+  }
+}
+
+.clock-widget {
+  padding: 36px;
+  border-radius: 38px;
+  align-self: end;
+}
+
+.clock-widget p {
+  margin: 0 0 12px;
+  color: #00ff9d;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.clock-widget h2 {
+  margin: 0;
+  font-size: clamp(52px, 8vw, 88px);
+  line-height: 1;
+  letter-spacing: -0.07em;
+}
+
+.clock-widget span {
+  display: block;
+  margin-top: 16px;
+  color: rgba(234, 255, 244, 0.66);
+}
+
+.desktop-clock-widget-shifted {
+  transform: translateX(-330px);
+}
+
+.desktop-dock {
+  position: fixed;
+  z-index: 12;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  height: 70px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  border-radius: 24px;
+}
+
+.desktop-dock button {
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(146, 255, 205, 0.16);
+  border-radius: 18px;
+  color: #eafff4;
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.desktop-dock button:hover {
+  transform: translateY(-6px);
+  background: rgba(0, 255, 157, 0.15);
+}
+
+.desktop-dock span {
+  font-size: 24px;
+}
+
+.launcher-toggle {
+  position: fixed;
+  z-index: 30;
+  top: 50%;
+  right: 22px;
+  width: 54px;
+  height: 96px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(146, 255, 205, 0.24);
+  border-radius: 999px;
+  color: #eafff4;
+  background: rgba(3, 14, 10, 0.62);
+  backdrop-filter: blur(18px);
+  font-size: 34px;
+  cursor: pointer;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.38);
+}
+
+.launcher-panel {
+  position: fixed;
+  z-index: 24;
+  top: 92px;
+  right: 22px;
+  bottom: 24px;
+  width: 280px;
+  padding: 20px;
+  border-radius: 34px;
+  transform: translateX(340px);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.35s ease;
+  overflow: hidden;
+}
+
+.terminal-mode {
+  border-color: rgba(0, 255, 157, 0.32) !important;
+  background: rgba(0, 255, 157, 0.12) !important;
+}
+
+.launcher-active .launcher-panel {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.launcher-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.launcher-header p {
+  margin: 0 0 4px;
+  color: rgba(234, 255, 244, 0.56);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.launcher-header h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.launcher-header button,
+.window-titlebar button {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  color: #eafff4;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.launcher-list {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.launcher-list button {
+  min-height: 68px;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  border: 1px solid rgba(146, 255, 205, 0.14);
+  border-radius: 24px;
+  color: #eafff4;
+  background: rgba(255, 255, 255, 0.055);
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.launcher-list button:hover {
+  transform: translateX(-6px);
+  background: rgba(0, 255, 157, 0.13);
+}
+
+.launcher-list span {
+  font-size: 28px;
+}
+
+.launcher-list strong {
+  font-size: 15px;
+}
+
+.os-window {
+  position: fixed;
+  z-index: 40;
+  left: 50%;
+  top: 52%;
+  width: min(760px, calc(100vw - 32px));
+  max-height: min(660px, calc(100vh - 116px));
+  border-radius: 30px;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  animation: windowIn 0.22s ease both;
+}
+
+@keyframes windowIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%) scale(0.94);
+  }
+}
+
+.window-titlebar {
+  height: 58px;
+  padding: 0 18px 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(146, 255, 205, 0.14);
+}
+
+.window-content {
+  padding: 24px;
+  overflow: auto;
+  max-height: calc(min(660px, 100vh - 116px) - 58px);
+}
+
+.window-placeholder h2 {
+  margin: 0 0 12px;
+}
+
+.window-placeholder p {
+  margin: 0 0 18px;
+  color: rgba(234, 255, 244, 0.7);
+  line-height: 1.6;
+}
+
+.project-preview {
+  display: grid;
+  gap: 14px;
+}
+
+.project-preview article {
+  padding: 18px;
+  border: 1px solid rgba(146, 255, 205, 0.14);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.project-preview h3,
+.project-preview p {
+  margin: 0;
+}
+
+.project-preview p {
+  margin-top: 8px;
+  color: rgba(234, 255, 244, 0.68);
+  line-height: 1.5;
+}
+
+.project-preview span {
+  display: block;
+  margin-top: 12px;
+  color: #00ff9d;
+  font-size: 12px;
+}
+
+.contact-preview {
+  display: grid;
+  gap: 14px;
+}
+
+.contact-preview a,
+.resume-link {
+  display: block;
+  padding: 18px;
+  border-radius: 20px;
+  color: #001d10;
+  background: #00ff9d;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+@media (max-width: 820px) {
+  .os-topbar {
+    height: 54px;
+    margin: 12px;
+    grid-template-columns: 1fr auto;
+  }
+
+  .os-center {
+    display: none;
+  }
+
+  .os-status span:nth-child(1),
+  .os-status span:nth-child(2) {
+    display: none;
+  }
+
+  .desktop-layer {
+    min-height: calc(100vh - 78px);
+    padding: 18px 12px 104px;
+  }
+
+  .hero-widget {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-content: start;
+  }
+
+  .weather-widget {
+    min-height: 330px;
+    padding: 28px;
+    border-radius: 30px;
+  }
+
+  .weather-symbol {
+    font-size: 58px;
+  }
+
+  .weather-top h1 {
+    font-size: 96px;
+  }
+
+  .clock-widget {
+    padding: 28px;
+    border-radius: 30px;
+  }
+
+  .launcher-toggle {
+    right: 12px;
+    width: 46px;
+    height: 82px;
+  }
+
+  .launcher-panel {
+    top: 78px;
+    right: 12px;
+    bottom: 16px;
+    width: min(280px, calc(100vw - 24px));
+  }
+
+  .desktop-dock {
+    bottom: 14px;
+  }
+}
+
+.os-status span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.status-online {
+  color: rgba(234, 255, 244, 0.78);
+}

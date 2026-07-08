@@ -1,5 +1,9 @@
 export const commands = {
   help: "Show available commands",
+  startx: "Launch GUI Desktop",
+  startx: "Launch WILLY OS desktop environment",
+  gui: "Alias for startx",
+  desktop: "Alias for startx",
   pwd: "Show current directory",
   ls: "List directory content",
   cd: "Change directory",
