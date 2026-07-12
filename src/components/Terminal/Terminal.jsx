@@ -20,6 +20,8 @@ import successSound from "../../assets/sounds/success.mp3";
 import errorSound from "../../assets/sounds/error.mp3";
 import matrixSound from "../../assets/sounds/matrix.mp3";
 import hologramSound from "../../assets/sounds/hologram.mp3";
+import launcherSound from "../../assets/sounds/launcher.mp3";
+import backTerminalSound from "../../assets/sounds/backtoterminal.mp3";
 import ProfileGif from "./ProfileGif";
 import GifLoader from "./GifLoader";
 
@@ -43,6 +45,14 @@ export default function Terminal({ onOpenGui }) {
   const bottomRef = useRef(null);
 
   const prompt = `root@willy:${formatPromptPath(currentPath)}$`;
+
+  audioManager.load("launcher", launcherSound, {
+    volume: 0.45,
+  });
+
+  audioManager.load("back", backTerminalSound, {
+    volume: 0.45,
+  });
 
   useEffect(() => {
     audioManager.load("enter", enterSound, {

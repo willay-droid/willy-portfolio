@@ -102,7 +102,13 @@ export default function GuiDesktop({ onExit }) {
 
       <button
         className="launcher-toggle"
-        onClick={() => setLauncherOpen((value) => !value)}
+        onClick={() => {
+          if (!launcherOpen) {
+            audioManager.play("launcher");
+          }
+
+          setLauncherOpen((value) => !value);
+        }}
         aria-label="Toggle launcher"
       >
         {launcherOpen ? "›" : "‹"}
@@ -125,7 +131,16 @@ export default function GuiDesktop({ onExit }) {
             </button>
           ))}
 
-          <button className="terminal-mode" onClick={onExit}>
+          <button
+            className="terminal-mode"
+            onClick={() => {
+              audioManager.play("back");
+
+              setTimeout(() => {
+                onExit();
+              }, 320);
+            }}
+          >
             <span>💻</span>
             <strong>Terminal Mode</strong>
           </button>
